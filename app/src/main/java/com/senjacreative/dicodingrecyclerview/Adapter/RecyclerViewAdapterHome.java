@@ -69,7 +69,7 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
 
         holder.tv_cosName.setText(mName.get(position));
         holder.tv_cosLoc.setText(mLoc.get(position));
-        Picasso.with(mContext).load(mPict.get(position)).placeholder(R.drawable.ic_image_black_24dp).into(holder.iv_cosPict);
+        Picasso.with(mContext).load(mPict.get(position)).placeholder(R.drawable.a_default).into(holder.iv_cosPict);
 
         Log.d("Cursor Posisi", "" + bindPos);
         Log.d("Bind Posisi", "" + lastBindPos);

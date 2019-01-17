@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.senjacreative.dicodingrecyclerview.Adapter.RecyclerViewAdapterHome;
@@ -30,6 +32,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout srl_home;
@@ -133,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
                 if (s.length()>5){
                     saveCosplayer();
                 }else {
-                    Toast.makeText(MainActivity.this, "Gagal Mendapatkan Data!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Periksa Koneksi Anda!!!", Toast.LENGTH_SHORT).show();
+                    srl_home.setRefreshing(false);
                 }
             }
         }
@@ -178,5 +183,42 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.about_me) {
+            aboutMe();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    void aboutMe(){
+        final SweetAlertDialog pDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.NORMAL_TYPE);
+        pDialog.setTitleText("About Me.");
+        pDialog.setContentText("Muhammad Iqbal Najih");
+        pDialog.setConfirmText("Ok");
+        pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                pDialog.dismissWithAnimation();
+            }
+        });
+        pDialog.setCancelable(false);
+        pDialog.show();
     }
 }

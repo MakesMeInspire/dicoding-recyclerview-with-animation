@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -52,6 +53,7 @@ public class Detail extends AppCompatActivity {
             cDesc = b.getString("desc");
             cBd = b.getString("bg");
             cPict = b.getString("pict");
+            Log.d("DATA COSPLAYER "," => \n"+"Nama : "+cName+"\n Tgl : "+cDate+"\n Loc : "+cLoc+"\n bg : "+cBd);
         }else {
             cName = "";
             cDate = "";
@@ -63,8 +65,8 @@ public class Detail extends AppCompatActivity {
     }
 
     void setContent(){
-        Picasso.with(this).load(cPict).placeholder(R.drawable.ic_image_black_24dp).into(civ_cosplayer);
-        Picasso.with(this).load(cBd).placeholder(R.drawable.ic_image_black_24dp).into(iv_background);
+        Picasso.with(this).load(cPict).placeholder(R.drawable.a_default).into(civ_cosplayer);
+        Picasso.with(this).load(cBd).placeholder(R.drawable.b_default).into(iv_background);
         tv_dCosName.setText(cName);
         tv_dCosDate.setText(cDate);
         tv_dCosDesc.setText("'' "+cDesc+" ''");
